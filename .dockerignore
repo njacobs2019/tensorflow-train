@@ -1,0 +1,4 @@
+# Exclude folders from the build context
+data/
+logs/
+src/

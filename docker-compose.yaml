@@ -1,0 +1,20 @@
+version: '2.6'
+services:
+  tensorflow:
+    build: .
+    command: ./tf/start.sh
+    volumes:
+      # Mount data directory
+      - ./data:/tf/data
+      # Mount src directory
+      - ./src:/tf/src
+      # Mount the logs directory
+      - ./logs:/tf/logs
+    # Connects host GPUs to the container
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: [ '0', '2' ]
+              capabilities: [ gpu ]
